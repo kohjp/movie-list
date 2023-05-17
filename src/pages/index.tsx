@@ -1,23 +1,21 @@
 import Seo from "@/components/Seo";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { useEffect, useState } from "react";
 
-export default function Home() {
-  const [movies, setMovies] =
-    useState<{ id: number; title: string; poster_path: string }[]>();
+interface MovieProps {
+  id: number;
+  title: string;
+  poster_path: string;
+}
 
-  useEffect(() => {
-    (async () => {
-      const { results } = await (await fetch("/api/movies")).json();
-      setMovies(results);
-      console.log(movies);
-    })();
-  }, []);
+export default function Home({
+  results,
+}: InferGetServerSidePropsType<GetServerSideProps>) {
   return (
     <div>
       <Seo title="Home" />
-      {!movies && <h4>Loading...</h4>}
       <div className="movieinfo_wrap">
-        {movies?.map((movie) => {
+        {results?.map((movie: MovieProps) => {
           return (
             <div className="movie" key={movie.id}>
               <img
@@ -54,4 +52,13 @@ export default function Home() {
       `}</style>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const { results } = await (
+    await fetch("http://localhost:3000/api/movies")
+  ).json();
+  return {
+    props: { results },
+  };
 }
