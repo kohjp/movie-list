@@ -15,19 +15,43 @@ export default function Home() {
   return (
     <div>
       <Seo title="Home" />
-      <h1>Home</h1>
       {!movies && <h4>Loading...</h4>}
-      {movies?.map((movie) => {
-        return (
-          <div key={movie.id}>
-            <img
-              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-              alt="poster-image"
-            />
-            <h4>{movie.title}</h4>
-          </div>
-        );
-      })}
+      <div className="movieinfo_wrap">
+        {movies?.map((movie) => {
+          return (
+            <div className="movie" key={movie.id}>
+              <img
+                className="poster_img"
+                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                alt="poster-image"
+              />
+              <h4>{movie.title}</h4>
+            </div>
+          );
+        })}
+      </div>
+      <style jsx>{`
+        .movieinfo_wrap {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          padding: 20px;
+          gap: 20px;
+          cursor: pointer;
+        }
+        .poster_img {
+          max-width: 100%;
+          border-radius: 12px;
+        }
+        .movie:hover img {
+          transform: scale(1.05) translateY(-10px);
+          transition: 0.5s;
+        }
+        .movie h4 {
+          font-size: 18px;
+          text-align: center;
+          margin-bottom: 5rem;
+        }
+      `}</style>
     </div>
   );
 }
