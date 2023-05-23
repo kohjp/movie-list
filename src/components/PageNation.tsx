@@ -40,6 +40,7 @@ export default function PageNation({
       <style jsx>
         {`
           .page_container {
+            max-width: 100%;
             position: fixed;
             bottom: 0;
             background-color: white;
@@ -50,6 +51,8 @@ export default function PageNation({
             gap: 10px;
             font-size: 30px;
             height: 70px;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px -50px 100px -20px,
+              rgba(0, 0, 0, 0.3) 0px -30px 60px -30px;
           }
           .active {
             color: tomato;

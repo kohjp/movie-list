@@ -16,10 +16,10 @@ export default function Home({
 }: InferGetServerSidePropsType<GetServerSideProps>) {
   const router = useRouter();
   const handleClick = (id: number, title: string) => {
-    router.push(`/movies/${title}/${id}`);
+    router.push(`/movies/${id}`);
   };
   return (
-    <div>
+    <div className="container">
       <Seo title="Home" />
       <div className="movieinfo_wrap">
         {results?.map((movie: MovieProps) => {
@@ -35,9 +35,7 @@ export default function Home({
                 alt="poster-image"
               />
               <h4>
-                <Link href={`/movies/${movie.title}/${movie.id}`}>
-                  {movie.title}
-                </Link>
+                <Link href={`/movies/${movie.id}`}>{movie.title}</Link>
               </h4>
             </div>
           );
@@ -45,6 +43,9 @@ export default function Home({
       </div>
       <PageNation page={page} total={total} />
       <style jsx>{`
+        .container {
+          margin-bottom: 70px;
+        }
         .movieinfo_wrap {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -54,16 +55,26 @@ export default function Home({
         }
         .poster_img {
           max-width: 100%;
-          border-radius: 12px;
+          height: 345px;
+          border-top-left-radius: 12px;
+          border-top-right-radius: 12px;
         }
-        .movie:hover img {
+        .movie:hover {
           transform: scale(1.05) translateY(-10px);
           transition: 0.5s;
         }
         .movie h4 {
           font-size: 18px;
           text-align: center;
-          margin-bottom: 5rem;
+          margin-bottom: 2rem;
+        }
+        .movie {
+           {
+            /* box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+            rgba(0, 0, 0, 0.3) 0px 30px 60px -30px; */
+          }
+          box-shadow: 1px 5px 10px -5px black;
+          border-radius: 12px;
         }
       `}</style>
     </div>

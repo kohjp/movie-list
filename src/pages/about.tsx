@@ -2,9 +2,13 @@ import Seo from "@/components/Seo";
 
 export default function About() {
   return (
-    <div>
+    <div className="container">
       <Seo title="About" />
-      <h1>About Us</h1>
+      <style jsx>{`
+        .container {
+          max-width: 100%;
+        }
+      `}</style>
     </div>
   );
 }
