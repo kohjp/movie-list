@@ -1,7 +1,6 @@
 import Seo from "@/components/Seo";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import { useEffect, useState } from "react";
-
+import Link from "next/link";
 interface MovieProps {
   id: number;
   title: string;
@@ -23,7 +22,9 @@ export default function Home({
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                 alt="poster-image"
               />
-              <h4>{movie.title}</h4>
+              <h4>
+                <Link href={`/movies/${movie.id}`}>{movie.title}</Link>
+              </h4>
             </div>
           );
         })}
