@@ -1,6 +1,10 @@
 import PageNation from "@/components/PageNation";
 import Seo from "@/components/Seo";
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import {
+  GetServerSideProps,
+  GetServerSidePropsContext,
+  InferGetServerSidePropsType,
+} from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 interface MovieProps {
@@ -12,7 +16,7 @@ interface MovieProps {
 export default function Home({
   results,
   page,
-  total,
+  total_pages,
 }: InferGetServerSidePropsType<GetServerSideProps>) {
   const router = useRouter();
   const handleClick = (id: number, title: string) => {
@@ -43,7 +47,7 @@ export default function Home({
           );
         })}
       </div>
-      <PageNation page={page} total={total} />
+      <PageNation page={page} total={total_pages} />
       <style jsx>{`
         .movieinfo_wrap {
           display: grid;
@@ -70,9 +74,9 @@ export default function Home({
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(params: GetServerSidePropsContext) {
   const { results, page, total_pages } = await (
-    await fetch("http://localhost:3000/api/movies/1")
+    await fetch(`http://localhost:3000/api/movies/${params.query.page}`)
   ).json();
   return {
     props: { results, page, total_pages },

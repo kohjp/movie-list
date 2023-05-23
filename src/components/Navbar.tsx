@@ -5,7 +5,10 @@ export default function NavBar() {
   const router = useRouter();
   return (
     <nav>
-      <img src="/vercel.svg" />
+      <div className="logo">
+        <img src="/logo.svg" />
+        <h2>영화 뭐 보지?</h2>
+      </div>
       <div>
         <Link href="/">
           <div className={router.pathname === "/" ? "active" : ""}>Home</div>
@@ -18,6 +21,8 @@ export default function NavBar() {
       </div>
       <style jsx>{`
         nav {
+          position: sticky;
+          top: 0;
           display: flex;
           gap: 10px;
           flex-direction: column;
@@ -26,8 +31,17 @@ export default function NavBar() {
           padding-bottom: 10px;
           box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
             rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+          background-color: white;
+          z-index: 100;
+        }
+        .logo {
+          display: flex;
+          align-items: center;
         }
         img {
+          object-fit: fill;
+          width: 50px;
+          height: 40px;
           max-width: 100px;
           margin-bottom: 5px;
         }
