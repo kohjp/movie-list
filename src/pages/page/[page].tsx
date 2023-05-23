@@ -83,7 +83,9 @@ export default function Home({
 
 export async function getServerSideProps(params: GetServerSidePropsContext) {
   const { results, page, total_pages } = await (
-    await fetch(`http://localhost:3000/api/movies/${params.query.page}`)
+    await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/movies/${params.query.page}`
+    )
   ).json();
   return {
     props: { results, page, total_pages },

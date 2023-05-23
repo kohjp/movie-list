@@ -135,7 +135,7 @@ SSG (Static Site Generation) 개념이다.
 
 export async function getServerSideProps({ params: { id } }: Params) {
   const result = await (
-    await fetch(`http://localhost:3000/api/movie/${id}`)
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/movie/${id}`)
   ).json();
 
   return {
