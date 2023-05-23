@@ -13,15 +13,7 @@ export default function Home({
 }: InferGetServerSidePropsType<GetServerSideProps>) {
   const router = useRouter();
   const handleClick = (id: number, title: string) => {
-    router.push(
-      {
-        pathname: `/movies/${id}`,
-        query: {
-          title,
-        },
-      },
-      `/movies/${id}`
-    );
+    router.push(`/movies/${title}/${id}`);
   };
   return (
     <div>
@@ -40,15 +32,7 @@ export default function Home({
                 alt="poster-image"
               />
               <h4>
-                <Link
-                  href={{
-                    pathname: `/movies/${movie.id}`,
-                    query: {
-                      title: movie.title,
-                    },
-                  }}
-                  as={`/movies/${movie.id}`}
-                >
+                <Link href={`/movies/${movie.title}/${movie.id}`}>
                   {movie.title}
                 </Link>
               </h4>
@@ -82,7 +66,7 @@ export default function Home({
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const { results } = await (
     await fetch("http://localhost:3000/api/movies")
   ).json();
