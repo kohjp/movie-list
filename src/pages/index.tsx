@@ -1,6 +1,7 @@
 import Seo from "@/components/Seo";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Link from "next/link";
+import { useRouter } from "next/router";
 interface MovieProps {
   id: number;
   title: string;
@@ -10,20 +11,46 @@ interface MovieProps {
 export default function Home({
   results,
 }: InferGetServerSidePropsType<GetServerSideProps>) {
+  const router = useRouter();
+  const handleClick = (id: number, title: string) => {
+    router.push(
+      {
+        pathname: `/movies/${id}`,
+        query: {
+          title,
+        },
+      },
+      `/movies/${id}`
+    );
+  };
   return (
     <div>
       <Seo title="Home" />
       <div className="movieinfo_wrap">
         {results?.map((movie: MovieProps) => {
           return (
-            <div className="movie" key={movie.id}>
+            <div
+              onClick={() => handleClick(movie.id, movie.title)}
+              className="movie"
+              key={movie.id}
+            >
               <img
                 className="poster_img"
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                 alt="poster-image"
               />
               <h4>
-                <Link href={`/movies/${movie.id}`}>{movie.title}</Link>
+                <Link
+                  href={{
+                    pathname: `/movies/${movie.id}`,
+                    query: {
+                      title: movie.title,
+                    },
+                  }}
+                  as={`/movies/${movie.id}`}
+                >
+                  {movie.title}
+                </Link>
               </h4>
             </div>
           );
