@@ -31,7 +31,7 @@ export default function MovieDetail({
         <div className="info-keyword">제목</div>
         <div className="info-content">{result.title}</div>
         <div className="info-keyword">장르</div>
-        <div className="info-content">
+        <div className="info-content genre-content">
           {result.genres.map((el: { id: number; name: string }) => (
             <span className="genres" key={el.id}>
               {el.name}
@@ -87,6 +87,7 @@ export default function MovieDetail({
           align-items: center;
           justify-content: center;
           font-weight: bold;
+          min-width: 86px;
         }
         .last-keyword {
           border-bottom: 0;
@@ -104,6 +105,11 @@ export default function MovieDetail({
           padding: 5px 10px;
           color: white;
           border-radius: 12px;
+          margin-bottom: 5px;
+        }
+        .genre-content {
+          display: flex;
+          flex-wrap: wrap;
         }
         .poster-wrap {
           display: flex;
