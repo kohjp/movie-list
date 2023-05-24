@@ -28,6 +28,8 @@ export default function MovieDetail({
         />
       </div>
       <div className="info-wrap">
+        <div className="info-keyword">제목</div>
+        <div className="info-content">{result.title}</div>
         <div className="info-keyword">장르</div>
         <div className="info-content">
           {result.genres.map((el: { id: number; name: string }) => (
