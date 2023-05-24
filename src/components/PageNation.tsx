@@ -1,4 +1,10 @@
 import Link from "next/link";
+import {
+  HiChevronDoubleLeft,
+  HiChevronDoubleRight,
+  HiChevronLeft,
+  HiChevronRight,
+} from "react-icons/hi";
 
 export default function PageNation({
   page,
@@ -14,6 +20,9 @@ export default function PageNation({
 
   return (
     <div className="page_container">
+      <Link href={`/page/1`}>
+        <HiChevronDoubleLeft />
+      </Link>
       <Link
         href={`/page/${
           5 * Math.floor((page - 1) / 5) <= 0
@@ -21,7 +30,7 @@ export default function PageNation({
             : 5 * Math.floor((page - 1) / 5)
         }`}
       >
-        {"<"}
+        <HiChevronLeft />
       </Link>
       {renderPages.map((el) => (
         <Link href={`/page/${el}`} key={el}>
@@ -35,7 +44,10 @@ export default function PageNation({
             : 5 * Math.floor((page + 4) / 5) + 1
         }`}
       >
-        {">"}
+        <HiChevronRight />
+      </Link>
+      <Link href={`/page/500`}>
+        <HiChevronDoubleRight />
       </Link>
       <style jsx>
         {`
