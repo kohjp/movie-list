@@ -39,8 +39,8 @@ export default function PageNation({
       ))}
       <Link
         href={`/page/${
-          5 * Math.floor((page + 4) / 5) >= total
-            ? total
+          5 * Math.floor((page + 4) / 5) >= 500
+            ? 500
             : 5 * Math.floor((page + 4) / 5) + 1
         }`}
       >
