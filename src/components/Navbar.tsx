@@ -7,7 +7,7 @@ export default function NavBar() {
     <nav>
       <div className="logo">
         <img src="/logo.svg" />
-        <h2>영화 뭐 보지?</h2>
+        <h2>영화 뭐 볼까?</h2>
       </div>
       <div>
         <Link href="/">

@@ -69,10 +69,6 @@ export default function Home({
           margin-bottom: 2rem;
         }
         .movie {
-           {
-            /* box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-            rgba(0, 0, 0, 0.3) 0px 30px 60px -30px; */
-          }
           box-shadow: 1px 5px 10px -5px black;
           border-radius: 12px;
         }
