@@ -121,6 +121,7 @@ export default function MovieDetail({
         .production-companies-image {
           object-fit: contain;
           height: 30px;
+          max-width: 100px;
         }
       `}</style>
     </div>
