@@ -52,16 +52,16 @@ export default function PageNation({
       <style jsx>
         {`
           .page_container {
-            max-width: 100%;
+            max-width: 512px;
+            width: 100%;
             position: fixed;
             bottom: 0;
             background-color: white;
             display: flex;
-            justify-content: center;
+            justify-content: space-around;
             align-items: center;
-            width: 520px;
             gap: 10px;
-            font-size: 30px;
+            font-size: 20px;
             height: 70px;
             box-shadow: rgba(50, 50, 93, 0.25) 0px -50px 100px -20px,
               rgba(0, 0, 0, 0.3) 0px -30px 60px -30px;

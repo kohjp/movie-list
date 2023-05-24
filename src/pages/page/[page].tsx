@@ -36,7 +36,7 @@ export default function Home({
               <img
                 className="poster_img"
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                alt="poster-image"
+                alt={`${movie.title}-poster-image`}
               />
               <h4>
                 <Link href={`/movies/${movie.id}`}>{movie.title}</Link>
@@ -59,6 +59,7 @@ export default function Home({
         }
         .poster_img {
           max-width: 100%;
+          min-height: 345px;
           height: 345px;
           border-top-left-radius: 12px;
           border-top-right-radius: 12px;
